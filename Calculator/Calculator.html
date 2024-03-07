@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Calculator.css">
+    <script src="JQuery\jquery-3.7.1.min.js"></script>
+    <title>Calculator</title>
+</head>
+<body>
+    <form class="calc">
+        <div class="header">
+            <hr />
+            <hr/>
+            <h1>Kingsley's Calcus</h1>
+            <input type="text" class="display" placeholder="0.000000000000000" disabled>
+            <hr />
+        </div>
+        <div class="body" class="seection group">
+            <hr />
+            <hr />
+            <div class="row">
+                <input type="button" value="7">
+                <input type="button" value="8">
+                <input type="button" value="9">
+                <input type="button" value="+">
+            </div>
+            <div class="row">
+                <input type="button" value="4">
+                <input type="button" value="5">
+                <input type="button" value="6">
+                <input type="button" value="-">
+            </div>
+            <div class="row">
+                <input type="button" value="1">
+                <input type="button" value="2">
+                <input type="button" value="3">
+                <input type="button" value="x">
+            </div>
+            <div class="row">
+                <input type="button" value="0">
+                <input type="button" class="clear" value="C">
+                <input type="button" class="equals" value="=">
+                <input type="button" value="/">
+            </div>
+        </div>
+    </form>
+    <script>
+        const $display = document.querySelector('input[type="text"]');
+        const $button = document.querySelectorAll('input[type="button"]');
+        
+        $button.forEach(($button) => {
+            $button.addEventListener(
+                'click',
+                () => {
+                    const value = $button.value;
+        
+                    if (value === 'C') {
+                        $display.value = '';
+                        return;
+                    }
+        
+                    if (value === '=') {
+                        const express = $display.value.replace(/x/g, '*');
+                        $display.value = eval(express);
+                        return;
+                    }
+        
+                    $display.value += value;
+                }
+            )
+        })
+    </script>
+</body>
+</html>
